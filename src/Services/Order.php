@@ -10,12 +10,8 @@ use BoldApps\ShopifyToolkit\Services\OrderLineItem as OrderLineItemService;
 use Illuminate\Support\Collection;
 use BoldApps\ShopifyToolkit\Services\Client as ShopifyClient;
 
-/**
- * Class Order.
- */
 class Order extends CollectionEntity
 {
-
     /**
      * @var TaxLineService
      */
@@ -44,7 +40,8 @@ class Order extends CollectionEntity
 
     /**
      * Order constructor.
-     * @param Client $client
+     *
+     * @param Client         $client
      * @param TaxLineService $taxLineService
      */
     public function __construct(ShopifyClient $client, TaxLineService $taxLineService, OrderLineItemService $lineItemService)
@@ -53,7 +50,6 @@ class Order extends CollectionEntity
         $this->lineItemService = $lineItemService;
         parent::__construct($client);
     }
-
 
     /**
      * @param $id
@@ -68,8 +64,8 @@ class Order extends CollectionEntity
     }
 
     /**
-     * @param int $page
-     * @param int $limit
+     * @param int   $page
+     * @param int   $limit
      * @param array $filter
      *
      * @return Collection
@@ -126,6 +122,7 @@ class Order extends CollectionEntity
 
     /**
      * @param ShopifyOrder $order
+     *
      * @return ShopifyOrder | object
      */
     public function update($order)
@@ -139,13 +136,14 @@ class Order extends CollectionEntity
 
     /**
      * @param ShopifyOrder $order
+     *
      * @return ShopifyOrder | object
      */
     public function create($order)
     {
         $serializedModel = ['order' => $this->serializeModel($order)];
 
-        $raw = $this->client->post("admin/orders.json", [], $serializedModel);
+        $raw = $this->client->post('admin/orders.json', [], $serializedModel);
 
         return $this->unserializeModel($raw['order'], ShopifyOrder::class);
     }
@@ -179,7 +177,6 @@ class Order extends CollectionEntity
      */
     protected function unserializeTaxLines($data)
     {
-
         if (null === $data) {
             return;
         }
@@ -221,7 +218,6 @@ class Order extends CollectionEntity
      */
     protected function unserializeLineItems($data)
     {
-
         if (null === $data) {
             return;
         }
@@ -233,6 +229,4 @@ class Order extends CollectionEntity
 
         return new Collection($collection);
     }
-
-
 }

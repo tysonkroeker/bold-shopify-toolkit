@@ -5,10 +5,6 @@ namespace BoldApps\ShopifyToolkit\Models;
 use BoldApps\ShopifyToolkit\Contracts\Serializeable;
 use BoldApps\ShopifyToolkit\Traits\HasAttributesTrait;
 
-/**
- * Class ApplicationCharge
- * @package BoldApps\ShopifyToolkit\Models
- */
 class ApplicationCharge implements Serializeable
 {
     use HasAttributesTrait;
@@ -42,7 +38,7 @@ class ApplicationCharge implements Serializeable
      */
     protected $status;
     /**
-     * @var boolean
+     * @var bool
      */
     protected $test;
     /**

@@ -14,9 +14,6 @@ use BoldApps\ShopifyToolkit\Models\DraftOrderAppliedDiscount as AppliedDiscountM
 use BoldApps\ShopifyToolkit\Models\Cart\Cart as CartModel;
 use BoldApps\ShopifyToolkit\Traits\TranslatePropertiesTrait;
 
-/**
- * Class DraftOrder
- */
 class DraftOrder extends Base
 {
     use TranslatePropertiesTrait;
@@ -54,13 +51,13 @@ class DraftOrder extends Base
         'appliedDiscount' => 'serializeAppliedDiscount',
     ];
 
-
     /**
      * DraftOrder constructor.
-     * @param Client $client
+     *
+     * @param Client                                    $client
      * @param \BoldApps\ShopifyToolkit\Services\TaxLine $taxLineService
-     * @param DraftOrderLineItemService $draftOrderLineItemService
-     * @param DraftOrderAppliedDiscount $appliedDiscountService
+     * @param DraftOrderLineItemService                 $draftOrderLineItemService
+     * @param DraftOrderAppliedDiscount                 $appliedDiscountService
      */
     public function __construct(ShopifyClient $client,
                                 TaxLineService $taxLineService,
@@ -75,18 +72,20 @@ class DraftOrder extends Base
 
     /**
      * @param $shopifyDraftOrder
+     *
      * @return object
      */
     public function create($shopifyDraftOrder)
     {
         $serializedModel = ['draft_order' => $this->serializeModel($shopifyDraftOrder)];
-        $raw = $this->client->post("admin/draft_orders.json", [], $serializedModel);
+        $raw = $this->client->post('admin/draft_orders.json', [], $serializedModel);
 
         return $this->unserializeModel($raw['draft_order'], ShopifyDraftOrder::class);
     }
 
     /**
      * @param $id
+     *
      * @return ShopifyDraftOrder
      */
     public function getById($id)
@@ -100,6 +99,7 @@ class DraftOrder extends Base
 
     /**
      * @param $data
+     *
      * @return ShopifyDraftOrder
      */
     public function createFromArray($data)
@@ -134,6 +134,7 @@ class DraftOrder extends Base
 
     /**
      * @param $id
+     *
      * @return object
      */
     public function delete($id)
@@ -143,6 +144,7 @@ class DraftOrder extends Base
 
     /**
      * @param $entities
+     *
      * @return array
      */
     protected function serializeTaxLines($entities)
@@ -162,11 +164,11 @@ class DraftOrder extends Base
 
     /**
      * @param $data
+     *
      * @return Collection
      */
     protected function unserializeTaxLines($data)
     {
-
         if (null === $data) {
             return;
         }
@@ -180,6 +182,7 @@ class DraftOrder extends Base
 
     /**
      * @param $entities
+     *
      * @return array
      */
     protected function serializeLineItems($entities)
@@ -199,6 +202,7 @@ class DraftOrder extends Base
 
     /**
      * @param $data
+     *
      * @return Collection
      */
     protected function unserializeLineItems($data)
@@ -216,6 +220,7 @@ class DraftOrder extends Base
 
     /**
      * @param $data
+     *
      * @return object
      */
     protected function unserializeAppliedDiscount($data)
@@ -229,6 +234,7 @@ class DraftOrder extends Base
 
     /**
      * @param $appliedDiscount
+     *
      * @return array
      */
     protected function serializeAppliedDiscount($appliedDiscount)

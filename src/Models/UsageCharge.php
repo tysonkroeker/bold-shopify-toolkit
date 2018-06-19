@@ -5,13 +5,8 @@ namespace BoldApps\ShopifyToolkit\Models;
 use BoldApps\ShopifyToolkit\Contracts\Serializeable;
 use BoldApps\ShopifyToolkit\Traits\HasAttributesTrait;
 
-/**
- * Class UsageCharge
- * @package BoldApps\ShopifyToolkit\Models
- */
 class UsageCharge implements Serializeable
 {
-
     use HasAttributesTrait;
 
     /**
@@ -48,7 +43,6 @@ class UsageCharge implements Serializeable
      * @var float
      */
     protected $riskLevel;
-
 
     /**
      * @return int $id
@@ -161,5 +155,4 @@ class UsageCharge implements Serializeable
     {
         $this->riskLevel = $riskLevel;
     }
-
 }

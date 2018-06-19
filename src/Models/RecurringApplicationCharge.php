@@ -5,13 +5,8 @@ namespace BoldApps\ShopifyToolkit\Models;
 use BoldApps\ShopifyToolkit\Contracts\Serializeable;
 use BoldApps\ShopifyToolkit\Traits\HasAttributesTrait;
 
-/**
- * Class RecurringApplicationCharge
- * @package BoldApps\ShopifyToolkit\Models
- */
 class RecurringApplicationCharge implements Serializeable
 {
-
     use HasAttributesTrait;
 
     /**
@@ -63,7 +58,7 @@ class RecurringApplicationCharge implements Serializeable
      */
     protected $terms;
     /**
-     * @var boolean
+     * @var bool
      */
     protected $test;
     /**
@@ -86,7 +81,6 @@ class RecurringApplicationCharge implements Serializeable
      * @var string
      */
     protected $decoratedReturnUrl;
-
 
     /**
      * @return int
@@ -231,7 +225,6 @@ class RecurringApplicationCharge implements Serializeable
     {
         $this->terms = $terms;
     }
-
 
     /**
      * @return bool

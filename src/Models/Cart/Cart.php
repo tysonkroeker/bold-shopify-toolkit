@@ -171,14 +171,16 @@ class Cart implements Serializeable
     /**
      * @return int
      */
-    public function getItemCount() {
+    public function getItemCount()
+    {
         return $this->itemCount;
     }
 
     /**
      * @param $value
      */
-    public function setItemCount($value) {
+    public function setItemCount($value)
+    {
         $this->itemCount = $value;
     }
 
@@ -198,7 +200,6 @@ class Cart implements Serializeable
         $this->requiresShipping = $value;
     }
 
-
     /**
      * @return array
      */
@@ -206,7 +207,6 @@ class Cart implements Serializeable
     {
         return $this->items;
     }
-
 
     /**
      * @param $values

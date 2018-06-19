@@ -15,9 +15,6 @@ use BoldApps\ShopifyToolkit\Services\Image as ImageService;
 use BoldApps\ShopifyToolkit\Services\Metafield as MetafieldService;
 use Illuminate\Support\Collection;
 
-/**
- * Class Product.
- */
 class Product extends CollectionEntity
 {
     /**
@@ -63,10 +60,10 @@ class Product extends CollectionEntity
     /**
      * Product constructor.
      *
-     * @param Client  $client
-     * @param Variant $variantService
-     * @param Option  $optionService
-     * @param Image   $imageService
+     * @param Client           $client
+     * @param Variant          $variantService
+     * @param Option           $optionService
+     * @param Image            $imageService
      * @param MetafieldService $metafieldService
      */
     public function __construct(
@@ -228,6 +225,7 @@ class Product extends CollectionEntity
 
     /**
      * @param $array
+     *
      * @return object
      */
     public function createFromArray($array)
@@ -468,6 +466,7 @@ class Product extends CollectionEntity
 
     /**
      * @param $data
+     *
      * @return Collection|void
      */
     protected function unserializeMetafields($data)

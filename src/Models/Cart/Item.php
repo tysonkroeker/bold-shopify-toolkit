@@ -1,4 +1,5 @@
 <?php
+
 namespace BoldApps\ShopifyToolkit\Models\Cart;
 
 use BoldApps\ShopifyToolkit\Contracts\Serializeable;
@@ -571,5 +572,4 @@ class Item implements Serializeable
     {
         $this->variantOptions = $variantOptions;
     }
-
 }

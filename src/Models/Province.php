@@ -7,7 +7,6 @@ use BoldApps\ShopifyToolkit\Traits\HasAttributesTrait;
 
 class Province implements Serializeable
 {
-
     use HasAttributesTrait;
 
     /**
@@ -63,7 +62,6 @@ class Province implements Serializeable
         return $this->code;
     }
 
-
     /**
      * @return int
      */
@@ -71,7 +69,6 @@ class Province implements Serializeable
     {
         return $this->countryId;
     }
-
 
     /**
      * @return int
@@ -81,7 +78,6 @@ class Province implements Serializeable
         return $this->id;
     }
 
-
     /**
      * @return string
      */
@@ -89,7 +85,6 @@ class Province implements Serializeable
     {
         return $this->name;
     }
-
 
     /**
      * @return int
@@ -99,7 +94,6 @@ class Province implements Serializeable
         return $this->shippingZoneId;
     }
 
-
     /**
      * @return float
      */
@@ -107,7 +101,6 @@ class Province implements Serializeable
     {
         return $this->tax;
     }
-
 
     /**
      * @return string
@@ -117,7 +110,6 @@ class Province implements Serializeable
         return $this->taxName;
     }
 
-
     /**
      * @return string
      */
@@ -126,7 +118,6 @@ class Province implements Serializeable
         return $this->taxType;
     }
 
-
     /**
      * @return float
      */
@@ -134,5 +125,4 @@ class Province implements Serializeable
     {
         return $this->taxPercentage;
     }
-
 }

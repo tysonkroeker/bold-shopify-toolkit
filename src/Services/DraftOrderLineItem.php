@@ -12,9 +12,6 @@ use BoldApps\ShopifyToolkit\Models\Cart\Item as CartItem;
 use Illuminate\Support\Collection;
 use BoldApps\ShopifyToolkit\Traits\TranslatePropertiesTrait;
 
-/**
- * Class DraftOrderLineItem
- */
 class DraftOrderLineItem extends Base
 {
     use TranslatePropertiesTrait;
@@ -47,9 +44,10 @@ class DraftOrderLineItem extends Base
 
     /**
      * DraftOrderLineItem constructor.
-     * @param Client $client
+     *
+     * @param Client                    $client
      * @param DraftOrderAppliedDiscount $appliedDiscountService
-     * @param TaxLineService $taxlineService
+     * @param TaxLineService            $taxlineService
      */
     public function __construct(ShopifyClient $client,
                                 AppliedDiscountService $appliedDiscountService,
@@ -62,6 +60,7 @@ class DraftOrderLineItem extends Base
 
     /**
      * @param $array
+     *
      * @return object
      */
     public function createFromArray($array)
@@ -71,6 +70,7 @@ class DraftOrderLineItem extends Base
 
     /**
      * @param CartItem $cartItem
+     *
      * @return DraftOrderLineItemModel
      */
     public function createDraftOrderLineItemFromCartItem(CartItem $cartItem)
@@ -91,7 +91,7 @@ class DraftOrderLineItem extends Base
         foreach ($draftOrderLineItemProps as $draftOrderLineItemProp) {
             if (in_array($draftOrderLineItemProp, $cartItemProps)) {
                 $cartItemValue = $cartItem->{'get'.ucfirst($draftOrderLineItemProp)}();
-                if (strpos($draftOrderLineItemProp, 'price') !== false) {
+                if (false !== strpos($draftOrderLineItemProp, 'price')) {
                     $draftOrderLineItem->setPrice($cartItemValue / 100);
                 } else {
                     $draftOrderLineItem->{'set'.ucfirst($draftOrderLineItemProp)}($cartItemValue);
@@ -109,6 +109,7 @@ class DraftOrderLineItem extends Base
 
     /**
      * @param $entities
+     *
      * @return array
      */
     protected function serializeTaxLines($entities)
@@ -128,11 +129,11 @@ class DraftOrderLineItem extends Base
 
     /**
      * @param $data
+     *
      * @return Collection
      */
     protected function unserializeTaxLines($data)
     {
-
         if (null === $data) {
             return;
         }
@@ -146,6 +147,7 @@ class DraftOrderLineItem extends Base
 
     /**
      * @param $data
+     *
      * @return object
      */
     protected function unserializeAppliedDiscount($data)
@@ -159,6 +161,7 @@ class DraftOrderLineItem extends Base
 
     /**
      * @param $appliedDiscount
+     *
      * @return array
      */
     protected function serializeAppliedDiscount($appliedDiscount)

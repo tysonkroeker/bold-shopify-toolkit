@@ -3,8 +3,6 @@
 use BoldApps\ShopifyToolkit\Models\User as ShopifyUser;
 use BoldApps\ShopifyToolkit\Services\User as UserService;
 
-use Illuminate\Support\Collection;
-
 class UserTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -26,12 +24,12 @@ class UserTest extends \PHPUnit\Framework\TestCase
     {
         $userEntity = new ShopifyUser();
         $userEntity->setId(55347909);
-        $userEntity->setFirstName("Nathan");
-        $userEntity->setLastName("Koop");
-        $userEntity->setEmail("nathank@boldcommerce.com");
-        $userEntity->setUrl("http://");
-        $userEntity->setIm("nathan.koop.com");
-        $userEntity->setScreenName("Nathan Koop");
+        $userEntity->setFirstName('Nathan');
+        $userEntity->setLastName('Koop');
+        $userEntity->setEmail('nathank@boldcommerce.com');
+        $userEntity->setUrl('http://');
+        $userEntity->setIm('nathan.koop.com');
+        $userEntity->setScreenName('Nathan Koop');
         $userEntity->setPhone('');
         $userEntity->setAccountOwner(true);
         $userEntity->setReceiveAnnouncements(1);
@@ -48,7 +46,6 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-
     /**
      * @test
      */
@@ -60,8 +57,8 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $expected->setLastName('Koop');
         $expected->setEmail('nathank@boldcommerce.com');
         $expected->setUrl('http://');
-        $expected->setIm("nathan.koop.com");
-        $expected->setScreenName("Nathan Koop");
+        $expected->setIm('nathan.koop.com');
+        $expected->setScreenName('Nathan Koop');
         $expected->setPhone('');
         $expected->setAccountOwner(true);
         $expected->setReceiveAnnouncements(1);
@@ -71,10 +68,9 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $expected->setPhoneValidated(true);
         $expected->setTfaEnabled(false);
 
-
         //from the shopify documentation
         $userJson = $this->getUserJson();
-        $jsonArray = (array)json_decode($userJson, true);
+        $jsonArray = (array) json_decode($userJson, true);
 
         $actual = $this->userService->unserializeModel($jsonArray, ShopifyUser::class);
 
@@ -104,25 +100,26 @@ class UserTest extends \PHPUnit\Framework\TestCase
         }';
     }
 
-    private function getUserArray(){
+    private function getUserArray()
+    {
         return [
-            "id" => 55347909,
-            "first_name" => "Nathan",
-            "email" => "nathank@boldcommerce.com",
-            "url" => "http://",
-            "im" => "nathan.koop.com",
-            "screen_name" => "Nathan Koop",
-            "phone" => "",
-            "last_name" => "Koop",
-            "account_owner" => true,
-            "receive_announcements" => 1,
-            "bio" => "",
-            "permissions" => [
-              "full"
+            'id' => 55347909,
+            'first_name' => 'Nathan',
+            'email' => 'nathank@boldcommerce.com',
+            'url' => 'http://',
+            'im' => 'nathan.koop.com',
+            'screen_name' => 'Nathan Koop',
+            'phone' => '',
+            'last_name' => 'Koop',
+            'account_owner' => true,
+            'receive_announcements' => 1,
+            'bio' => '',
+            'permissions' => [
+              'full',
             ],
-            "user_type" => "regular",
-            "phone_validated?" => true,
-            "tfa_enabled?" => false
+            'user_type' => 'regular',
+            'phone_validated?' => true,
+            'tfa_enabled?' => false,
         ];
     }
 }

@@ -1,15 +1,12 @@
 <?php
-use \PHPUnit\Framework\TestCase;
 
-
+use PHPUnit\Framework\TestCase;
 use BoldApps\ShopifyToolkit\Models\Refund as ShopifyRefund;
 use BoldApps\ShopifyToolkit\Services\Refund as RefundService;
 use BoldApps\ShopifyToolkit\Models\Transaction;
 use BoldApps\ShopifyToolkit\Models\OrderAdjustment;
 use BoldApps\ShopifyToolkit\Models\RefundLineItem;
-
 use Illuminate\Support\Collection;
-
 
 class RefundTest extends TestCase
 {
@@ -51,10 +48,10 @@ class RefundTest extends TestCase
             'restock' => true,
             'notify' => false,
             'shipping' => [
-                'amount' => 25
+                'amount' => 25,
             ],
             'refund_line_items' => [
-                ['line_item_id' => 222333, 'quantity' => 1]
+                ['line_item_id' => 222333, 'quantity' => 1],
             ],
             'transactions' => [
                 [
@@ -62,12 +59,11 @@ class RefundTest extends TestCase
                     'amount' => 126.70,
                     'kind' => 'refund',
                     'gateway' => 'bogus',
-                ]
+                ],
             ]
 
-
             //TODO: When ignored fields is implemented (Services\Base), we should remove this
-            , 'order_id' => 123456
+            , 'order_id' => 123456,
         ];
 
         $actual = $this->refundService->serializeModel($refundEntity);
@@ -80,7 +76,6 @@ class RefundTest extends TestCase
      */
     public function ShopifyRefundDeserializesProperly()
     {
-
         //from the shopify documentation
         $refundJson = '{
             "id": 929361464,
@@ -167,8 +162,8 @@ class RefundTest extends TestCase
         $expected = new ShopifyRefund();
         $expected->setId(929361464);
         $expected->setOrderId(450789469);
-        $expected->setCreatedAt("2016-11-09T13:53:19-05:00");
-        $expected->setNote("wrong size");
+        $expected->setCreatedAt('2016-11-09T13:53:19-05:00');
+        $expected->setNote('wrong size');
         $expected->setRestock(true);
         $expected->setUserId(0);
 
@@ -179,35 +174,33 @@ class RefundTest extends TestCase
         $expectedRefundLineItem1->subtotal = 195.67;
         $expectedRefundLineItem1->totalTax = 3.98;
 
-
         $expectedTransactionLineItem1 = new Transaction();
         $expectedTransactionLineItem1->id = 1068278485;
         $expectedTransactionLineItem1->orderId = 450789469;
-        $expectedTransactionLineItem1->amount = "199.65";
-        $expectedTransactionLineItem1->kind = "refund";
-        $expectedTransactionLineItem1->gateway = "bogus";
-        $expectedTransactionLineItem1->status = "success";
-        $expectedTransactionLineItem1->message = "Bogus Gateway: Forced success";
-        $expectedTransactionLineItem1->createdAt = "2016-11-09T13:53:19-05:00";
+        $expectedTransactionLineItem1->amount = '199.65';
+        $expectedTransactionLineItem1->kind = 'refund';
+        $expectedTransactionLineItem1->gateway = 'bogus';
+        $expectedTransactionLineItem1->status = 'success';
+        $expectedTransactionLineItem1->message = 'Bogus Gateway: Forced success';
+        $expectedTransactionLineItem1->createdAt = '2016-11-09T13:53:19-05:00';
         $expectedTransactionLineItem1->test = true;
         $expectedTransactionLineItem1->authorization = null;
-        $expectedTransactionLineItem1->currency = "USD";
+        $expectedTransactionLineItem1->currency = 'USD';
         $expectedTransactionLineItem1->locationId = null;
         $expectedTransactionLineItem1->userId = null;
         $expectedTransactionLineItem1->parentId = 801038806;
         $expectedTransactionLineItem1->deviceId = null;
         $expectedTransactionLineItem1->receipt = [];
         $expectedTransactionLineItem1->errorCode = null;
-        $expectedTransactionLineItem1->sourceName = "755357713";
-
+        $expectedTransactionLineItem1->sourceName = '755357713';
 
         $expected->setRefundLineItems(new Collection([$expectedRefundLineItem1]));
         $expected->setTransactions(new Collection([$expectedTransactionLineItem1]));
         $expected->setOrderAdjustments(new Collection([
-            new OrderAdjustment(152072455, 4822363655, 209079047, 2.37, 0.00, "refund_discrepancy", "Refund discrepancy")
+            new OrderAdjustment(152072455, 4822363655, 209079047, 2.37, 0.00, 'refund_discrepancy', 'Refund discrepancy'),
         ]));
 
-        $jsonArray = (array)json_decode($refundJson, true);
+        $jsonArray = (array) json_decode($refundJson, true);
 
         $actual = $this->refundService->createFromArray($jsonArray);
 

@@ -7,7 +7,6 @@ use BoldApps\ShopifyToolkit\Traits\HasAttributesTrait;
 
 class ShippingZone implements Serializeable
 {
-
     use HasAttributesTrait;
 
     /**
@@ -56,7 +55,6 @@ class ShippingZone implements Serializeable
         return $this->name;
     }
 
-
     /**
      * @return array
      */
@@ -73,7 +71,6 @@ class ShippingZone implements Serializeable
         return $this->carrierShippingRateProviders;
     }
 
-
     /**
      * @return array
      */
@@ -81,7 +78,6 @@ class ShippingZone implements Serializeable
     {
         return $this->priceBasedShippingRates;
     }
-
 
     /**
      * @return array
